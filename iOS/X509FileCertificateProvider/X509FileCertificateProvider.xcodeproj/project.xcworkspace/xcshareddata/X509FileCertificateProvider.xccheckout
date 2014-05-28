@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7FE158E8-2D81-46B9-890F-EB410A5BD431</string>
+	<key>IDESourceControlProjectName</key>
+	<string>X509FileCertificateProvider</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</key>
+		<string>ssh://git.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.plugins.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>sample/CredentialProvider/ios/X509FileCertificateProvider/X509FileCertificateProvider.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://git.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.plugins.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>com.sap.mobile.platform.client.kapsel</string>
+		</dict>
+	</array>
+</dict>
+</plist>

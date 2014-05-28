@@ -3,7 +3,7 @@
 Sample implementation of the SAP Mobile SDK `<CertificateProvider>` protocol API, which can be added to an iOS or Android project to allow the SAP Logon Manager component to get x509 certificate identities from 3rd party APIs or the device file system.  The `<CertificateProvider>` protocol can be used with SAP's **Native OData framework**, and the **Kapsel SDK**.
 
 ##Introduction
-Before SDK 3.0 SP03, the SAP Logon Manager was hard-coded to call SAP Afaria API's when attempting to optain an X509Certificate for use with mutual auth against the SAP Mobile Platform server.  There was no extension point for integrating non-Afaria certificate provider options, such as SAP Partners (Mocana), other MDM providers, or file-system installation.
+Before SAP Mobile SDK 3.0 SP03, the SDK **Logon Manager** was hard-coded to call SAP Afaria API's when attempting to optain an X509Certificate for use with mutual auth against the SAP Mobile Platform server.  There was no extension point for integrating non-Afaria certificate provider options, such as SAP Partners, other MDM providers, or file-system installation.
 
 With the standardization on Logon Manager ('Logon') as the primary reusable component for handling registration, integration with the SAP Mobile SDK's **Data Vault**, **Client Hub**, **Onboarding**, etc., it became necessary to provide this extension point for non-Afaria solutions.
 
@@ -12,7 +12,7 @@ The solution is a protocol interface, which can be implemented for a particular 
 ##Release Info
 The interfaces for CertificateProvider and CertificateProviderDelegate (and Android equivalents) are released in **SDK 3.0 SP03**.  The Developer edition of the SDK can be downloaded on [store.sap.com](store.sap.com).  
 
-See [Copyright and license](https://github.wdf.sap.corp/MobileSDK/x509certprovider-plugin#copyright-and-license) for license info for this sample implementation.
+See [Copyright and license](https://github.com/SAP/mobilesdk-certificateprovider#copyright-and-license) for license info for this sample implementation.
 
 ##Installation
 1.  Clone to your dev machine

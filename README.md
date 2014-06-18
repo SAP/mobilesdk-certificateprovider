@@ -14,6 +14,17 @@ The interfaces for CertificateProvider and CertificateProviderDelegate (and Andr
 
 See [Copyright and license](https://github.com/SAP/mobilesdk-certificateprovider#copyright-and-license) for license info for this sample implementation.
 
+##Additional Documentation
+Product Documentation can be found for these interfaces on [help.sap.com](help.sap.com) > Mobile > SAP Mobile Platform > SAP Mobile Platform SDK.
+
+See links here for
+
+   - [Native Android](http://help.sap.com/saphelp_smp303sdk/helpdata/en/3c/227ce642834b60a210baacc39cc7d7/content.htm)
+   - [Native iOS](http://help.sap.com/saphelp_smp303sdk/helpdata/en/37/0c58b9400248a4b71ee8b407b79b07/content.htm)
+   - [Kapsel iOS & Android](http://help.sap.com/saphelp_smp303sdk/helpdata/en/7c/035fab70061014a483940fd6c29742/content.htm)
+
+It is recommended to review the Kapsel documentation as well as the 'Native' doc for iOS or Android, as there is signficant overlap at the native code level.
+
 ##Installation
 1.  Clone to your dev machine
 2.  Select one of the `CertificateProvider` implementations which is similar to your scenario, and modify to match your scenario's API's/sequence

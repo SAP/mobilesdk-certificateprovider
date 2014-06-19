@@ -46,6 +46,24 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
                         sap.logon.IabUi, "<Certificate Provider Class Name>");
     ```
 
+##Runtime Pre-Requisites
+Make sure that Client Hub has been installed and activated by the end user.
+
+Set  `UserCreationPolicy=certificate`.
+The Logon component must find the key value `UserCreationPolicy=certificate`, in order to call the CertificateProvider for a certificate. A CertificateProvider could be registered to the Logon during the `Logon.init()` , but would be ignored without this value. This behavior is consistent for both Native and Kapsel SDK.
+
+The user creation policy defines the authentication method for the user: automatic, manual or certificate. The manual and automatic methods are for the password based authentication. The certificate method is for X.509 based authentication. If no value is set, the default is certificate.
+
+Set the `UserCreationPolicy` in the `clienthub.properties` (Android) or `clienthub.plist` (iOS).
+
+	<!--Mandatory Settings-->
+	<!--Hostname of the server, example: xyz.sap.corp-->
+	Host : <string>                     //  Hostname of the server, example: xyz.sap.corp 
+	Port : <string>                     //  Port of the server, example: 8080
+	SecurityConfiguration : <string>    //  Security configuration of the application, examples: "SSO", 
+        	                                "MySec001", "Cert02"
+	UserCreationPolicy : <string>       //  automatic/manual/certificate
+
 ##Interface
 ###iOS
 ####\<CertificateProvider\>

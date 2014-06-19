@@ -28,7 +28,7 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
 ##Installation
 1.  Clone to your dev machine
 2.  Select one of the `CertificateProvider` implementations which is similar to your scenario, and modify to match your scenario's API's/sequence
-3.  Drag the modified `CertificateProvider` implementation into your project
+3.  Drag the modified `CertificateProvider` implementation into your project, **with the Mobile SDK 3.0 SP03+ libraries linked**
 4.  Register the `CertificateProvider` to the `LogonManager` component, using one of the following methods
 
     #####iOS (Native)

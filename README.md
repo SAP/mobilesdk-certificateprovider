@@ -2,6 +2,8 @@
 
 Sample implementation of the SAP Mobile SDK `<CertificateProvider>` protocol API, which can be added to an iOS or Android project to allow the SAP Logon Manager component to get x509 certificate identities from 3rd party APIs or the device file system.  The `<CertificateProvider>` protocol can be used with SAP's **Native OData framework**, and the **Kapsel SDK**.
 
+> As of SAP Mobile SDK v3.0 SP05, the `<CertificateProvider>` interface requires SAP Mobile Platform server in the landscape.
+
 ##Introduction
 Before SAP Mobile SDK 3.0 SP03, the SDK **Logon Manager** was hard-coded to call SAP Afaria API's when attempting to optain an X509Certificate for use with mutual auth against the SAP Mobile Platform server.  There was no extension point for integrating non-Afaria certificate provider options, such as SAP Partners, other MDM providers, or file-system installation.
 

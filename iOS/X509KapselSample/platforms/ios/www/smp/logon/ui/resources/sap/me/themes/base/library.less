@@ -1,0 +1,91 @@
+/* NOTE: This file was generated as an optimized version of "library.source.less" for the Theme Designer. */
+
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2015 SAP SE. All rights reserved
+ */
+
+@import "../../../../../Base/baseLib/baseTheme/base.less"; /* ORIGINAL IMPORT PATH: "../../../../sap/ui/core/themes/base/base.less" */
+
+@import "../../../../sap/ui/core/themes/base/global.less";
+/* START "shared.css" */
+/* This CSS shares it rules with all other CSS of this library */
+
+/* END "shared.css" */
+
+
+/* START "Calendar.css" */
+
+.sapMeCalendar{
+	position: relative;
+	margin: auto;
+}
+
+.sapMeCalendar > .sapMeCalendarPrevious{
+	position: absolute;
+	left:0;
+	z-index: 1;
+}
+
+.sapMeCalendar > .sapMeCalendarNext{
+	position: absolute;
+	right:0;
+	z-index: 1;
+}
+
+.sapMeCalendar > .sapMeCalendarMonth{
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	vertical-align: top;
+}
+
+.sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthName{
+	text-align: center;
+	font-size:1em;
+    line-height:1.2em;
+    padding:0.7em 0 0.4em 0;
+    font-weight:700;
+    height: 44px; /* the height of the prevBtn & nextBtn */
+}
+
+
+.sapMeCalendar > .sapMeCalendarMonth > div > .sapMeCalendarMonthDay{
+	text-align: center;
+	display: inline-block;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+
+.sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay{	
+    padding: 15px 0px;
+}
+.sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay > *{
+	pointer-events: none; /* to avoid tap events inside --> best practice is do a Day control */	
+}
+
+/* END "Calendar.css" */
+
+/* START "OverlapCalendar.css" */
+.sapUIMeOverlapCalendar {
+}
+.sapMeOverlapCalendarGrid{
+	
+}
+.sapMeOverlapCalendarRow{
+	
+}
+.sapMeOverlapCalendarDay{
+	text-align: center;
+	display: inline-block;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding: 15px 0px;
+	border: 1px solid gray;
+}
+
+/* END "OverlapCalendar.css" */
+

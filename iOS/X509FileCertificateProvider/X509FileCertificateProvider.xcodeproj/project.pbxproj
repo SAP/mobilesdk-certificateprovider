@@ -10,6 +10,7 @@
 		9A1DB6651862237E005222CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1DB6641862237E005222CB /* Foundation.framework */; };
 		9A1DB66A1862237E005222CB /* X509FileCertificateProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A1DB6691862237E005222CB /* X509FileCertificateProvider.h */; };
 		9A1DB66C1862237E005222CB /* X509FileCertificateProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DB66B1862237E005222CB /* X509FileCertificateProvider.m */; };
+		9A29A00A1A78304800F0D627 /* X509FileCertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A29A0091A78304800F0D627 /* X509FileCertViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9A05B6921A7C2361007F103D /* CertificateProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateProvider.h; sourceTree = "<group>"; };
 		9A1DB6611862237E005222CB /* libX509FileCertificateProvider.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libX509FileCertificateProvider.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1DB6641862237E005222CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A1DB6681862237E005222CB /* X509FileCertificateProvider-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "X509FileCertificateProvider-Prefix.pch"; sourceTree = "<group>"; };
@@ -33,7 +35,9 @@
 		9A1DB66B1862237E005222CB /* X509FileCertificateProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = X509FileCertificateProvider.m; sourceTree = "<group>"; };
 		9A1DB6721862237E005222CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9A1DB6751862237E005222CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		9A915D121875FCD300989918 /* CertificateProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CertificateProvider.h; path = ../../../../../plugins/logon/ios/src/xcode/MAFLogonCoreCDVPlugin/CertificateProvider.h; sourceTree = "<group>"; };
+		9A2535701AD809EA00A573DF /* CertificateProviderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateProviderDelegate.h; sourceTree = "<group>"; };
+		9A29A0081A78304800F0D627 /* X509FileCertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X509FileCertViewController.h; sourceTree = "<group>"; };
+		9A29A0091A78304800F0D627 /* X509FileCertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X509FileCertViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +82,13 @@
 		9A1DB6661862237E005222CB /* X509FileCertificateProvider */ = {
 			isa = PBXGroup;
 			children = (
-				9A915D121875FCD300989918 /* CertificateProvider.h */,
+				9A2535701AD809EA00A573DF /* CertificateProviderDelegate.h */,
+				9A05B6921A7C2361007F103D /* CertificateProvider.h */,
 				9A1DB6691862237E005222CB /* X509FileCertificateProvider.h */,
 				9A1DB66B1862237E005222CB /* X509FileCertificateProvider.m */,
 				9A1DB6671862237E005222CB /* Supporting Files */,
+				9A29A0081A78304800F0D627 /* X509FileCertViewController.h */,
+				9A29A0091A78304800F0D627 /* X509FileCertViewController.m */,
 			);
 			path = X509FileCertificateProvider;
 			sourceTree = "<group>";
@@ -145,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A29A00A1A78304800F0D627 /* X509FileCertViewController.m in Sources */,
 				9A1DB66C1862237E005222CB /* X509FileCertificateProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

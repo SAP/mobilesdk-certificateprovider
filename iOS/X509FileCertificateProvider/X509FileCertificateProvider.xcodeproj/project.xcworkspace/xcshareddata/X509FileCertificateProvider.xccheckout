@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7FE158E8-2D81-46B9-890F-EB410A5BD431</string>
+	<string>677B3384-0D1B-4B97-AC46-5722AC6E7885</string>
 	<key>IDESourceControlProjectName</key>
 	<string>X509FileCertificateProvider</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</key>
-		<string>ssh://git.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.plugins.git</string>
+		<key>53204015B1A4D41DB5C87B88BA27946217B8F80A</key>
+		<string>ssh://productiongit.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.sample.ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>sample/CredentialProvider/ios/X509FileCertificateProvider/X509FileCertificateProvider.xcodeproj/project.xcworkspace</string>
+	<string>X509FileCertificateProvider2/X509FileCertificateProvider.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</key>
-		<string>../../../../../..</string>
+		<key>53204015B1A4D41DB5C87B88BA27946217B8F80A</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://git.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.plugins.git</string>
+	<string>ssh://productiongit.wdf.sap.corp:29418/smp/client/kapsel/com.sap.mobile.platform.client.kapsel.sample.ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</string>
+	<string>53204015B1A4D41DB5C87B88BA27946217B8F80A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6E4FF809-2CB9-4D34-8EC7-A132BDDDD0A8</string>
+			<string>53204015B1A4D41DB5C87B88BA27946217B8F80A</string>
 			<key>IDESourceControlWCCName</key>
-			<string>com.sap.mobile.platform.client.kapsel</string>
+			<string>com.sap.mobile.platform.client.kapsel.sample.ios</string>
 		</dict>
 	</array>
 </dict>

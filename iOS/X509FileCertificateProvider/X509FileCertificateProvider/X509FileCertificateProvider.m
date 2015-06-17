@@ -7,35 +7,106 @@
 //
 
 #import "X509FileCertificateProvider.h"
+#import "X509FileCertViewController.h"
 
 @interface X509FileCertificateProvider()
--(void) getClientCertificateFromFile;
+-(void) getClientCertificateFromFile:(NSString*)filePath password:(NSString*)password withCompletion:(void(^)(SecIdentityRef, NSError*))block;
 -(NSError*) getErrorObject:(int)errorCode message:(NSString*)errorMessage;
 @end
 
 static NSString* const kSMPCertProviderTag = @"CERTIFICATE_PROVIDER";
 static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
 
-@implementation X509FileCertificateProvider {
-   SecIdentityRef currentIdentity;
-}
-
+@implementation X509FileCertificateProvider
 
 #pragma mark - CertificateProvider Interface
 
-- (void) getCertificate:(id<CertificateProviderDelegate>) delegate {
-   providerDelegate = delegate;
-   //move to mediator
-   NSError* error;
-   if (_settings){
-      if (![providerDelegate showUI:_settings failedWithError:&error]){
-         //report error
-         [providerDelegate onGetCertificateFailure:[self getErrorObject:ERR_ShowUI_Delegate_Html message:@"ShowUI delegate method with html path parameter returns error"]];
-      }
-   }
-    else{
-      [providerDelegate onGetCertificateFailure:[self getErrorObject:ERR_ShowUI_Delegate_No_UI_Settings message:@"ShowUI delegate method called without UI settings"]];
-   }
+
+
+- (UIViewController *)topViewController{
+  return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+ 
+- (UIViewController *)topViewController:(UIViewController *)rootViewController
+{
+  if (rootViewController.presentedViewController == nil) {
+    return rootViewController;
+  }
+  
+  if ([rootViewController.presentedViewController isMemberOfClass:[UINavigationController class]]) {
+    UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
+    UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
+    return [self topViewController:lastViewController];
+  }
+  
+  UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
+  return [self topViewController:presentedViewController];
+}
+
+
+- (void) initialize:(NSDictionary *)option withCompletion:(void(^)(SecIdentityRef, NSError*))block{
+   
+      //if certificate is already provisioned, load and return it
+       NSError* err = nil;
+       SecIdentityRef identity = nil;
+       [self getStoredCertificate:&identity error:&err];
+       if (identity != nil){
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                block(identity, nil);
+                CFRelease(identity);
+            });
+       }
+       else if (err != nil){
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                block(nil, err);
+            });
+       }
+       else{
+          //certificate is not yet provisioned, get it from server, this will involve show the UI to get the parameter from user
+          //The UI may be 1. native viewcontroller, 2. UIWebView with UI5 html 3. cordova webview
+          
+          //display a ViewController to get file path and password
+          //add new params into parameter arrays, and check whether all required parameters are available, if so,
+          //retrieve the certificate. Otherwise, call showUI method to get the missing parameters
+          __block NSString* filePath, * password;
+          if (option){
+              [option enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                  if ([key isEqualToString:@"filepath"]){
+                     filePath = (NSString*)obj;
+                  }
+                  else if ([key isEqualToString:@"password"]){
+                     password = (NSString*)obj;
+                  }
+              }];
+             
+           }
+
+           UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"X509FileCertScreen" bundle:nil];
+           X509FileCertViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"X509FileCertScreen"];
+           vc.onDismiss = ^(X509FileCertViewController* sender){
+               if (sender.bIsCancelled){
+                    NSError* err = [NSError errorWithDomain:@"X509FileCertificateProvider" code:-1 userInfo:nil];
+                    block(nil, err);
+                }
+                else{
+                    //load certificate from file system
+                    filePath = sender.fileName.text;
+                    password = sender.password.text;
+                    if (filePath && password){
+                        //get certificate from file
+                        [self getClientCertificateFromFile:filePath password:password withCompletion:block];
+                    }
+                }
+
+           };
+           UIViewController* topVC = [self topViewController];
+           
+           [topVC presentViewController:vc animated:YES completion:nil];
+        }
+}
+
+-(NSString*) getProviderID{
+    return NSStringFromClass (self.class);
 }
 
 //method to synchronously get a certificate from saved local copy.
@@ -50,10 +121,6 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
    NSError* error = nil;
    
    //check current identity object if available
-   if (currentIdentity != nil){
-      *pidentityRef = currentIdentity;
-   }
-   else{
       // Common name is stored in label attribute,
       NSDictionary* queryIdentity = [NSDictionary dictionaryWithObjectsAndKeys:
                                      kFileCertificateLabel,                   kSecAttrLabel,
@@ -89,13 +156,8 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
                if ([[(__bridge id)keyClass description] isEqual:(__bridge id)kSecAttrKeyClassPrivate])
                {
                   *pidentityRef = (__bridge SecIdentityRef)[thisResult objectForKey:(__bridge NSString*)kSecValueRef];
-                  if (currentIdentity){
-                      CFRelease(currentIdentity);                 //release previous identity object
-                      currentIdentity = nil;
-                  }
-                  //get hold of the new identity object
-                  currentIdentity = *pidentityRef;
-                  CFRetain(currentIdentity);
+                 //get hold of the new identity object
+                  CFRetain(*pidentityRef);
                
                }
             }
@@ -109,10 +171,6 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
       if (result != nil){
          CFRelease(result);
       }
-   }
-   if (anError != nil){
-      *anError = error;
-   }
    
    return error == nil;
 }
@@ -141,54 +199,15 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
       *anError = error;
    }
    
-   if (currentIdentity != nil){
-      CFRelease(currentIdentity);
-      currentIdentity = nil;
-   }
    return error == nil;
 }
 
 
-- (BOOL) setParameters:(NSDictionary*) params failedWithError:(NSError **)error{
-   //add new params into parameter arrays, and check whether all required parameters are available, if so,
-   //retrieve the certificate. Otherwise, call showUI method to get the missing parameters
-   if (params){
-      [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-          if ([key isEqualToString:@"filepath"]){
-             filePath = (NSString*)obj;
-          }
-          else if ([key isEqualToString:@"password"]){
-             password = (NSString*)obj;
-          }
-      }];
-     
-   }
-   
-   if (filePath && password){
-      //get certificate from file
-      [self getClientCertificateFromFile];
-   }
-   else{
-      if (error != nil){
-         *error = [self getErrorObject:ERR_Set_Parameters_Failed message:@"Fail to set parameters"];
-      }
-      return FALSE;
-   }
-   return TRUE;
-}
-
 #pragma mark - Landscape-specific Interface
-//initialize the settings for getting parameter UI
-- (id) init{
-    currentIdentity = nil;
-    NSDictionary* certificateFileSettings = [NSDictionary dictionaryWithObjectsAndKeys:@"client.p12", @"filepath", nil];
-    _settings = [NSDictionary dictionaryWithObjectsAndKeys:@"x509ProviderUI", @"viewID", certificateFileSettings, @"settings", nil];
-    return self;
-}
 
 //get client certificate from file for authentiation, and also save to a local copy to keychain for later use
--(void) getClientCertificateFromFile{
-   
+-(void) getClientCertificateFromFile:(NSString*)filePath password:(NSString*)password withCompletion:(void(^)(SecIdentityRef, NSError*))block{
+
    //check identity exists using the common name as application tag and application label
    NSError* error = nil;
    
@@ -273,10 +292,11 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
    }
    
    if  (identity != nil){
-      [providerDelegate onGetCertificateSuccess:identity];
+       block(identity, nil);
+       CFRelease(identity);
    }
    else {
-      [providerDelegate onGetCertificateFailure:error];
+       block(nil, error);
    }
 }
 

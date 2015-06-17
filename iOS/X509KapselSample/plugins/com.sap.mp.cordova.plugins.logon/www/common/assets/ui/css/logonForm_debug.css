@@ -1,0 +1,118 @@
+
+/*
+#smpLogon .sapMILILabel {
+	color: #FFF;
+}
+
+#smpLogon .sapMBarMiddle .sapMBarPH {
+	color: #FFF;
+	background-color: #000;
+}
+
+#smpLogon .sapMBarMiddle .sapMBarPH label{
+	color: #FFF;
+	background-color: #000;
+}
+
+*/
+
+#smpLogon .sapMFlexItem {
+    display: -webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+#smpLogon .smpHeaderBox {
+	padding-bottom: 3em;
+	/*padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;*/
+}
+
+#smpLogon .smpHeaderListItem {
+	background-color: transparent;
+}
+
+.sap-ios #smpLogon {
+    /*background-color: #dedede;*/
+    height:100%;
+    -webkit-box-pack: start !important;
+}
+
+.sap-android #smpLogon {
+   /*background-color: #fff;*/
+    height:100%;
+    -webkit-box-pack: start !important;
+}
+
+
+#smpLogon .sapMBusyIndicator {
+    display:-webkit-box;
+    padding:5em;
+}
+
+#smpLogon  .sapMListInsetBG {
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+.sap-android #smpLogon .sapMFlexItem .sapMILILabel {
+     overflow:visible;
+}
+
+.sapUiMedia-Std-Phone #smpLogon #smpList-listUl.sapMListInset {
+    width:95%;
+}
+
+.sapUiMedia-Std-Tablet #smpLogon #smpList-listUl.sapMListInset {
+    width:95%;
+}
+
+.sapUiMedia-Std-Desktop #smpLogon #smpList-listUl.sapMListInset {
+    width:95%;
+}
+
+@media (min-width: 60em) {
+	.sapUiMedia-Std-Tablet #smpLogon #smpList-listUl.sapMListInset {
+	    width:75%;
+	}
+	.sapUiMedia-Std-Desktop #smpLogon #smpList-listUl.sapMListInset {
+	    width:75%;
+	}
+}
+
+/*
+#smpLogon {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#smpLogon * {
+    -webkit-transform: translateZ(0px);
+}
+*/
+
+.smpLogonLink .sapMALIText {
+	color: #00F;
+	text-decoration: underline;
+	font-size: 90%;
+}
+
+.sapUiBody #placeholder {
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+
+@media (max-width:350px) {
+	.sap-phone .smpLogonLink .sapMALIText {
+		font-size: 60%;
+	}
+    
+   .sap-phone .sapMILILabel {
+		font-size: 1rem;
+      overflow: visible;
+	}
+}

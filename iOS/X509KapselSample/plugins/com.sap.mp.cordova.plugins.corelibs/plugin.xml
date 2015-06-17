@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.sap.mp.cordova.plugins.corelibs" version="3.8.1">
+	<name>CoreLibs</name>
+	<platform name="android">
+		<source-file src="android/libs/Common-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/Connectivity-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/CoreServices-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/Request-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/ClientHubSLL-3.8.2.jar" target-dir="libs"/>
+		
+		<source-file src="android/libs/sap-e2etrace-2.3.5.300.jar" target-dir="libs"/>
+		<source-file src="android/libs/perflib-1.2.0.jar" target-dir="libs"/>
+		<source-file src="android/libs/AfariaSLL-7.00.6169.0.jar" target-dir="libs"/>
+
+        <source-file src="android/libs/DataVaultLib-3.8.2.jar" target-dir="libs"/>
+        <source-file src="android/libs/ClientLog-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/SupportabilityFacade-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/HttpConversation-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/HttpConvAuthFlows-3.8.2.jar" target-dir="libs"/>
+		<source-file src="android/libs/E2ETrace-3.8.2.jar" target-dir="libs"/>		
+        <source-file src="android/libs/simple-xml-2.7.1.jar" target-dir="libs"/>	
+            
+		<source-file src="android/libs/corelibs-android-3.8.1.jar" target-dir="libs"/>
+        
+        <resource-file src="android/res/values/colors.xml" target="res/values/colors.xml" />
+        <resource-file src="android/res/values/dimens.xml" target="res/values/dimens.xml" />
+        <resource-file src="android/res/values/styles.xml" target="res/values/styles.xml" />
+	</platform>
+	<platform name="ios">
+		<framework src="libz.dylib"/>
+		<framework src="libstdc++.dylib" />
+        <framework src="libc++.dylib"/>
+		<framework src="libsqlite3.dylib"/>
+		<framework src="Security.framework"/>
+		<framework src="MessageUI.framework"/>
+		<framework src="CFNetwork.framework"/>
+		<framework src="SystemConfiguration.framework"/>
+        <framework src="CoreData.framework"/>
+		<source-file framework="true" src="ios/libs/libConnectivity.a"/>
+		<source-file framework="true" src="ios/libs/libRequest.a"/>
+		<source-file framework="true" src="ios/libs/libE2ETrace.a"/>
+		<source-file framework="true" src="ios/libs/libCoreServices.a"/>
+		<source-file framework="true" src="ios/libs/libClientHubSLL.a"/>
+		<source-file framework="true" src="ios/libs/libLogger.a"/>
+        <source-file framework="true" src="ios/libs/libHttpConversation.a"/>
+        <source-file framework="true" src="ios/libs/libHttpConvAuthFlows.a"/>
+
+        <source-file framework="true" src="ios/libs/libSupportability.a"/>
+        <source-file framework="true" src="ios/libs/libClientLog.a"/>
+        <source-file framework="true" src="ios/libs/libE2ETrace2.a"/>
+        
+		<source-file framework="true" src="ios/libs/libAfariaSLL.a"/>
+		<source-file framework="true" src="ios/libs/libDatavault.a"/>
+		<source-file framework="true" src="ios/libs/libPerformanceLib.a"/>
+		<source-file framework="true" src="ios/libs/libSMPCoreLib.a"/>
+        <source-file framework="true" src="ios/libs/libcrypto.a"/>
+	</platform>
+</plugin>

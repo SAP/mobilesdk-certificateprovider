@@ -25,14 +25,8 @@
 
 
 @interface X509FileCertificateProvider : NSObject <CertificateProvider>{
-   __weak id<CertificateProviderDelegate> providerDelegate;
-   //parameters required to get x509 certificate
-   NSString* filePath;
-   NSString* password;
-   
-   //initial settings for displaying parameter screen, it contains viewID and certificate file path
-   NSDictionary* _settings;
 }
+
 
 
 @end

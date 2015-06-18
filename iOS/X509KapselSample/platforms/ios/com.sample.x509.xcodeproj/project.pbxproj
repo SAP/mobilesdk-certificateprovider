@@ -60,6 +60,7 @@
 		9A131E4A1B30AA3D00D65C6B /* client2.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 9A131E471B3099BD00D65C6B /* client2.p12 */; };
 		9A131E4C1B30AAE600D65C6B /* X509FileCertScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A131E4B1B30AAE600D65C6B /* X509FileCertScreen.storyboard */; };
 		9A993F9634D0460DBA2FD669 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E73C962D394F35ABADE96A /* CDVDevice.m */; };
+		9AB3806F1B331D1900605948 /* libX509FileCertificateProvider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A131E7E1B32028C00D65C6B /* libX509FileCertificateProvider.a */; };
 		9ACDBD211BFC47FDB72A9516 /* libMAFLogonManagerNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CF7155DC7F44A094E93E4E /* libMAFLogonManagerNG.a */; };
 		9AD965E21B2F61E600F1ED40 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD965E11B2F61E600F1ED40 /* libstdc++.6.0.9.dylib */; };
 		A0BFE2C13E584F378B67F358 /* AfariaProvider.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6495DA49BC0E4363B035EEDE /* AfariaProvider.bundle */; };
@@ -202,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB3806F1B331D1900605948 /* libX509FileCertificateProvider.a in Frameworks */,
 				9AD965E21B2F61E600F1ED40 /* libstdc++.6.0.9.dylib in Frameworks */,
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,

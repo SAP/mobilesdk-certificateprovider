@@ -42,7 +42,7 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
     #####Android (Native)
 
     #####Kapsel (JavaScript)
-    Set `CustomCertificateProvider` in LogonContext and call the logon `startInitLogon`.
+    Set `CustomCertificateProvider` in LogonContext's appConfig.certificate property, and call the logon `startLogonInit`.
     ```javascript
     
               function register() {
@@ -93,7 +93,7 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
 
 ##Copyright and license
 
-Copyright 2014 SAP AG
+Copyright 2015 SAP AG
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 

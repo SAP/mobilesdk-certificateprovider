@@ -23,7 +23,7 @@ See links here for
    - [Native Android](http://help.sap.com/saphelp_smp308sdk/helpdata/en/3c/227ce642834b60a210baacc39cc7d7/content.htm)
    - [Native iOS](http://help.sap.com/saphelp_smp308sdk/helpdata/en/37/0c58b9400248a4b71ee8b407b79b07/content.htm)
    - [Kapsel iOS & Android](http://help.sap.com/saphelp_smp308sdk/helpdata/en/7c/035fab70061014a483940fd6c29742/content.htm)
-
+   - [API reference](http://help.sap.com/saphelp_smp308sdk/helpdata/en/7c/03685c70061014bfc0ec6c6e15b454/content.htm)
 It is recommended to review the Kapsel documentation as well as the 'Native' doc for iOS or Android, as there is signficant overlap at the native code level.
 
 ##Installation

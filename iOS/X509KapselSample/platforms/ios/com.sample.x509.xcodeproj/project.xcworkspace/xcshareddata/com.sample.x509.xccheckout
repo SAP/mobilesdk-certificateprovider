@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>734FFA1CC24A03462979BFB97BF943946B26AFDA</key>
-		<string>https://github.com/SAP/mobilesdk-certificateprovider.git</string>
+		<string>https://github.com/jonathanli2/mobilesdk-certificateprovider.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iOS/X509KapselSample/platforms/ios/com.sample.x509.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/SAP/mobilesdk-certificateprovider.git</string>
+	<string>https://github.com/jonathanli2/mobilesdk-certificateprovider.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script>
+            applicationContext = null;
+            
+            window.onerror = onError;
+
+            function onError(msg, url, line) {
+                var idx = url.lastIndexOf("/");
+                var file = "unknown";
+                if (idx > -1) {
+                    file = url.substring(idx + 1);
+                }
+                alert("An error occurred in " + file + " (at line # " + line + "): " + msg);
+                return false; //suppressErrorAlert;
+            }
+
+            function register() {
+                if (applicationContext) {
+                    alert("Already Registered");
+                    return;
+                }
+                
+                
+                var context = {
+                    operation:{
+                        logonView : sap.logon.IabUi
+                    },
+                    appConfig:{
+                        appID : "com.sap.maf.test.ios.logonapp_X509M", // app id on SMP server
+                        isForSMP : true,  //SMP registration
+                        certificate : "X509FileCertificateProvider" //the value must match the key defined in the plist file
+                    },
+                    // for certificate registration, the serverhost and serverPort, https configuration are required
+                    smpConfig : {
+                        "serverHost": "torn00461340a.amer.global.corp.sap", //Place your SMP 3.0 server name here
+                        "https": "true",
+                        "serverPort": "8082",
+                        "communicatorId": "REST",
+                        "passcode": "password",  //note hardcoding passwords and unlock passcodes are strictly for ease of use during development
+                        //once set can be changed by calling sap.Logon.managePasscode()
+                        "unlockPasscode": "password",
+                        "passcode_CONFIRM":"password"
+                    }
+                };
+             
+            /*    // no SMP registration logoncontext
+                var context = {
+                    operation:{
+                        logonView : sap.logon.IabUi
+                    },
+                    appConfig:{
+                        appID : "com.sap.maf.test.ios.logonapp_X509M", // Change this to app id on server
+                        isForSMP : false,
+                        certificate : "X509FileCertificateProvider" //the value must match the key defined in the plist file
+                    },
+                    // Optional initial connection context
+                    smpConfig : {
+                        "passcode": "password",  //note hardcoding passwords and unlock passcodes are strictly for ease of use during development
+                        //once set can be changed by calling sap.Logon.managePasscode()
+                        "unlockPasscode": "password",
+                        "passcode_CONFIRM":"password"
+                    }*/
+              
+
+                //registration callback methods
+                var appDelegate = {};
+                appDelegate.onRegistrationSuccess = function(result) {
+                    alert("Successfully Registered, result: " + JSON.stringify(result));
+					console.log("~~~~> registration result: " + JSON.stringify(result));
+                    applicationContext = result;
+                }
+                
+                appDelegate.onRegistrationError = function(error) {   //this method is called if the user cancels the registration.
+                    console.log("An error occurred:  " + JSON.stringify(error));
+                    if (device.platform == "Android") {  //Not supported on iOS to exit app
+                        navigator.app.exitApp();
+                    }
+                }
+                
+            
+                sap.Logon.startLogonInit(context, appDelegate);
+              }
+        
+
+            function unRegister() {
+                if (applicationContext == null) {
+                    alert("Not Registered");
+                    return;
+                }
+                sap.Logon.core.deleteRegistration(logonUnregisterSuccessCallback, unRegisterErrorCallback);
+            }
+            
+            function logonUnregisterSuccessCallback(result) {
+                alert("Successfully Unregistered");
+                applicationContext = null;
+                //sap.Logon.unlock(function () {},function (error) {});
+            }
+
+            function unRegisterErrorCallback(error) {
+                console.log("An error occurred:  " + JSON.stringify(error));
+            }
+        
+        function sendOdataRequest(){
+            var requestUrl = applicationContext.applicationEndpointURL;
+			if (!requestUrl) {
+				// In the non-SMP case, the applicationContext doesn't have the endpoint URL
+				// Set the endpoint here.
+				requestUrl = "https://someserver.com/odata/example.svc/";
+			}
+			console.log("~~~~> requestUrl: " + requestUrl);
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", requestUrl, true);
+            xhr.setRequestHeader('X-SMP-APPCID',
+                                 applicationContext.applicationConnectionId);
+            xhr.onreadystatechange = function() {
+                    console.log('xhr.onreadystatechange, readystate: ' +xhr.readyState + ", status: "+ xhr.status);
+                                     
+                    if (xhr.readyState == 4 ) {
+                        alert( "request response state: 4, status: "+  xhr.status + ", response: "+ xhr.responseText);
+                    }
+            }
+                                 
+            xhr.send();
+            
+        }
+        </script>
+    </head>
+    <body>
+        <h1>Logon Sample</h1>
+        <button id="register" onclick="register()">RegisterOrUnlock</button>
+        <button id="unregister" onclick="unRegister()">Unregister</button>
+        <button id="odata" onclick="sendOdataRequest()">SendOdataRequest</button>
+    </body>
+</html>
+

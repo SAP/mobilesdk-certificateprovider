@@ -40,55 +40,59 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
     [myLogonInstance setCertificateProvider:myCertificateProvider];
     ```
     #####Android (Native)
+    
+    #####Windows (Native)
+    For SDK 3.0 SP08 or earlier, use the **SAP.Logon.Core.ICertificateProvider**.
+    This interface is still supported in SP09 or later, but is deprecated in favor of **SAP.CertificateProvider.ICertificateProvider**.  The newer interface should be adopted when possible.
 
     #####Kapsel (JavaScript)
     Set `CustomCertificateProvider` in LogonContext's appConfig.certificate property, and call the logon `startLogonInit`.
     ```javascript
     
-              function register() {
-                
-                var context = {
-                    operation:{
-                        logonView : sap.logon.IabUi
-                    },
-                    appConfig:{
-                        appID : "com.sap.maf.test.ios.logonapp_X509M", // app id on SMP server
-                        isForSMP : true,  //SMP registration
-                        certificate : "CustomCertificateProvider" //the value must match the key defined in the plist file
-                    },
-                    // for certificate registration, the serverhost and serverPort, https configuration are required
-                    smpConfig : {
-                        "serverHost": "torn00461340a.amer.global.corp.sap", //Place your SMP 3.0 server name here
-                        "https": "true",
-                        "serverPort": "8082",
-                        "communicatorId": "REST",
-                        "passcode": "password",  //note hardcoding passwords and unlock passcodes are strictly for ease of use during development
-                        //once set can be changed by calling sap.Logon.managePasscode()
-                        "unlockPasscode": "password",
-                        "passcode_CONFIRM":"password"
-                    }
-                };
-      
+    function register() {
+        
+        var context = {
+            operation:{
+                logonView : sap.logon.IabUi
+            },
+            appConfig:{
+                appID : "com.sap.maf.test.ios.logonapp_X509M", // app id on SMP server
+                isForSMP : true,  //SMP registration
+                certificate : "CustomCertificateProvider" //the value must match the key defined in the plist file
+            },
+            // for certificate registration, the serverhost and serverPort, https configuration are required
+            smpConfig : {
+                "serverHost": "torn00461340a.amer.global.corp.sap", //Place your SMP 3.0 server name here
+                "https": "true",
+                "serverPort": "8082",
+                "communicatorId": "REST",
+                "passcode": "password",  //note hardcoding passwords and unlock passcodes are strictly for ease of use during development
+                //once set can be changed by calling sap.Logon.managePasscode()
+                "unlockPasscode": "password",
+                "passcode_CONFIRM":"password"
+            }
+        };
 
-          
-                //registration callback methods
-                var appDelegate = {};
-                appDelegate.onRegistrationSuccess = function(result) {
-                    alert("Successfully Registered");
-                    applicationContext = result;
-                }
-                
-                appDelegate.onRegistrationError = function(error) {   //this method is called if the user cancels the registration.
-                    console.log("An error occurred:  " + JSON.stringify(error));
-                    if (device.platform == "Android") {  //Not supported on iOS to exit app
-                        navigator.app.exitApp();
-                    }
-                }
-                
-            
-                sap.Logon.startLogonInit(context, appDelegate);
-              }
-```
+
+    
+        //registration callback methods
+        var appDelegate = {};
+        appDelegate.onRegistrationSuccess = function(result) {
+            alert("Successfully Registered");
+            applicationContext = result;
+        }
+        
+        appDelegate.onRegistrationError = function(error) {   //this method is called if the user cancels the registration.
+            console.log("An error occurred:  " + JSON.stringify(error));
+            if (device.platform == "Android") {  //Not supported on iOS to exit app
+                navigator.app.exitApp();
+            }
+        }
+        
+    
+        sap.Logon.startLogonInit(context, appDelegate);
+    }
+    ```
 
 ##Samples Build Procedures
 ####X509KapselSample

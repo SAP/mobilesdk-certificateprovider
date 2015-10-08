@@ -88,6 +88,7 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
             
                 sap.Logon.startLogonInit(context, appDelegate);
               }
+```
 
 ##Samples Build Procedures
 ####X509KapselSample

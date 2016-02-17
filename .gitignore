@@ -3,3 +3,4 @@ profile
 
 
 iOS/X509FileCertificateProvider/X509FileCertificateProvider.xcodeproj/project.xcworkspace/xcuserdata/**/*
+*.a

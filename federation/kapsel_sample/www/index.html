@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <script src="datajs-1.1.2.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            
+            applicationContext = null;
+            window.onerror = onError;
+            function onError(msg, url, line) {
+                var idx = url.lastIndexOf("/");
+                var file = "unknown";
+                if (idx > -1) {
+                    file = url.substring(idx + 1);
+                }
+                alert("An error occurred in " + file + " (at line # " + line + "): " + msg);
+                return false; //suppressErrorAlert;
+            }
+        
+        function register(){
+            console.log("registration called");
+            
+            var context = {
+                operation : {
+                    logonView : sap.logon.IabUi
+                },
+                appConfig : {
+                    appID : "<<APP_ID>>", //the application id on SMP / HCPms server if used
+                    isForSMP : false, //set to true in case of SMP Server config below!
+                    "certificate": { "id": "com.sap.federationprovider", //in case federation you must exactly use this id 
+                    "config": {
+                        "federated_certificate": "X509FileCertificateProvider", //consult sap help portal for available SAP provided certificate providers
+                        "com.sap.fileprovider.filename": "<<FILENAME>>.p12", //ios version of provider uses this information to find the .p12 file from main bundle
+                        "com.sap.fileprovider.password": "<<P12_FILE_PASSWORD>>"                    } 
+                    }
+                    certificate : "com.sap.federationprovider",
+                    
+                },
+                /* Direct Gateway Config */
+                smpConfig : {
+                    "serverHost": "<<GATEWAY_SERVER_HOST>>",
+                    "https": "true", //to signal we should have secure connection
+                    "serverPort": "<HTTPS_PORT>>",
+                    "communicatorId": "REST",   // iOS needs this configuration value to work properly
+                }
+
+                /* SMP / HCPms Config
+                smpConfig : {
+                    "serverHost": "<<SMP_SERVER_HOST>>",
+                    "https": "true", //to signal we should have secure connection
+                    "serverPort": "<HTTPS_PORT>>",
+                    "communicatorId": "REST",   // iOS needs this configuration value to work properly
+                }
+                */
+            };
+            
+            var appDelegate = {};
+            appDelegate.onRegistrationSuccess = function(result) {
+                alert("Successfully Registered");
+                applicationContext = result;
+            }
+            
+            appDelegate.onRegistrationError = function(error) {   //this method is called if the user cancels the registration.
+                console.log("An error occurred:  " + JSON.stringify(error));
+                if (device.platform == "Android") {  //Not supported on iOS to exit app
+                    navigator.app.exitApp();
+                }
+            }
+            
+            sap.Logon.startLogonInit(context, appDelegate);
+        }
+        
+        function unRegister() {
+            if (applicationContext == null) {
+                alert("Not Registered");
+                return;
+            }
+            sap.Logon.core.deleteRegistration(logonUnregisterSuccessCallback, unRegisterErrorCallback);
+        }
+        
+        function logonUnregisterSuccessCallback(result) {
+            alert("Successfully Unregistered");
+            applicationContext = null;
+            //sap.Logon.unlock(function () {},function (error) {});
+        }
+        
+        function unRegisterErrorCallback(error) {
+            console.log("An error occurred:  " + JSON.stringify(error));
+        }
+        
+        function downloadSVC(){
+            // callbacks
+            var successCB = function(serverResponse){
+                alert("Status: " + JSON.stringify(serverResponse.status));
+                alert("Headers: " + JSON.stringify(serverResponse.headers));
+                alert("Response: " + JSON.stringify(serverResponse.responseText));
+            }
+            var errorCB = function(errorObject){
+                alert("Error making request: " + JSON.stringify(errorObject));
+            }
+            //get the certificate from Logon, then logon will call Federation Provider as its Certificate Provider
+            var authConfig = {
+                "clientCert": [{
+                               "type": "logon"
+                               }]
+            };
+            
+            // Make the request with the certificate source description object.
+            sap.AuthProxy.sendRequest2("GET", "https://mo-39d7636c8.mo.sap.corp:44301/sap/opu/odata/iwfnd/rmtsampleflight?sap-client=001&saml2=disabled", null, null, successCB, errorCB, 0, authConfig);
+        }
+        
+        
+        // Wait for device API libraries to load
+        //
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+        
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            var registerButton = document.getElementById("reg");
+            var unregisterButton = document.getElementById("unregister");
+            var odataButton = document.getElementById("odata");
+            var SVCButton = document.getElementById("SVCButton");
+            
+            registerButton.addEventListener('click', register);
+            unregisterButton.addEventListener('click', unRegister);
+            
+            SVCButton.addEventListener('click', downloadSVC);
+        }
+        
+            </script>
+        
+    </head>
+    <body onload="onLoad()">
+        
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+        
+        <h1>Register Sample</h1>
+        <button id="reg">RegisterOrUnlock</button> </br></br>
+        <button id="unregister">Unregister</button> </br></br>
+        <button id="SVCButton">getSVC</button> </br></br>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

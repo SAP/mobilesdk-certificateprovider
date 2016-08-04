@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Property of SAP SE, only for internal use
+-->
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="sample-plugin-x509filecertificateprovider"
+    version="3.13.0-SNAPSHOT">
+    <name>X509FileCertificateProvider</name>
+    <description>Simple X509 File Certificate Provider Plugin</description>
+    <license>Restrocted</license>
+    <keywords>x509</keywords>
+    <repo>https://github.com/SAP/mobilesdk-certificateprovider</repo>
+    <issue>https://github.com/SAP/mobilesdk-certificateprovider/issues</issue>
+
+    <!-- Normally you would need to specify the dependency to make sure that you fail if 
+        the dependent module is not found or available. We will skip this. Make sure that you 
+        do have the LogonPlugin added.
+    -->
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="X509FileCertificateProvider" >
+                <param name="android-package" value="com.sap.sample.X509FileCertificateProvider"/>
+            </feature>
+        </config-file>
+        <!-- Need to add the FQPN to the Provider file to the identifier that will be looked up from configuration -->
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+          <meta-data android:name="X509FileCertificateProvider" android:value="com.sap.sample.X509FileCertificateProvider"/>
+		  <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:name="com.sap.sample.FileCertProviderActivity" />
+        </config-file>
+        <source-file src="src/android/X509FileCertificateProvider.java" target-dir="src/com/sap/sample" />
+        <source-file src="src/android/FileCertProviderActivity.java" target-dir="src/com/sap/sample" />
+        <source-file src="src/android/CustomKeyManagerFactory.java" target-dir="src/com/sap/sample" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="X509FileCertificateProvider">
+                <param name="ios-package" value="CDVX509FileCertificateProvider"/>
+            </feature>
+        </config-file>
+        <!-- Need to add the name to the Provider file to the identifier that will be looked up from configuration -->
+        <config-file target="*-Info.plist" parent="X509FileCertificateProvider">
+          <string>CDVX509FileCertificateProvider</string>
+        </config-file>
+        <header-file src="src/ios/CDVX509FileCertificateProvider.h" />
+        <source-file src="src/ios/CDVX509FileCertificateProvider.m" />
+    </platform>
+</plugin>

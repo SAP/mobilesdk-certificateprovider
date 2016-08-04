@@ -1,0 +1,21 @@
+{
+  "name": "sample-plugin-x509filecertificateprovider",
+  "version": "3.12.0-SNAPSHOT",
+  "description": "Simple X509 File Certificate Provider Plugin",
+  "cordova": {
+    "id": "sample-plugin-x509filecertificateprovider",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SAP/mobilesdk-certificateprovider"
+  },
+  "keywords": [
+    "x509"
+  ],
+  "author": "SAP SE",
+  "license": "Restricted"
+}

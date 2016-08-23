@@ -309,5 +309,9 @@ static NSString* const kFileCertificateLabel = @"x509FileCertificateIdentity";
    return error;
 }
 
+- (BOOL) setParameters:(NSDictionary*)params failedWithError:(NSError **)error{
+    //handle the input parameter if needed
+    return YES;
+}
 
 @end

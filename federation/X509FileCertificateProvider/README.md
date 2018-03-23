@@ -71,7 +71,7 @@ cordova plugin remove sample-plugin-x509filecertificateprovider
 ```
 and then add it again:
 ```
-$ cordova plugin add https://github.wdf.sap.corp/SMPClientSDKDevelopment/X509FileCertificateProvider
+$ cordova plugin add https://<#github host location#>/SMPClientSDKDevelopment/X509FileCertificateProvider
 ```
 
 Known Gradle Problem & Workarounds
@@ -116,7 +116,7 @@ var context = {
 		"com.sap.fileprovider.password": "qwerty"
 	},
 	smpConfig : {
-		"serverHost": "torn00461340a.amer.global.corp.sap",
+		"serverHost": "<#My Server#>",
 		"https": "true",
 		"serverPort": "8082",
 		"communicatorId": "REST",
@@ -132,5 +132,3 @@ Be aware that the iOS version of the provider provides only this possibility to 
 Complete HTML example
 ---------------------
 Override the default generated Cordova www/index.html file content with this content.
-You can take inspiration from this GitHub repository:
-https://github.wdf.sap.corp/SMPClientSDKDevelopment/CertificateProviderSamples

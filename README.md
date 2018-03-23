@@ -62,7 +62,7 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
             },
             // for certificate registration, the serverhost and serverPort, https configuration are required
             smpConfig : {
-                "serverHost": "torn00461340a.amer.global.corp.sap", //Place your SMP 3.0 server name here
+                "serverHost": "<#My Server#>", //Place your SMP 3.0 server name here
                 "https": "true",
                 "serverPort": "8082",
                 "communicatorId": "REST",

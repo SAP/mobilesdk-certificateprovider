@@ -94,24 +94,6 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
     }
     ```
 
-##Samples Build Procedures
-####X509KapselSample
-
-The **X509KapselSample** project requires the following plugins:
-
- - com.sap.mp.cordova.plugins.authproxy
- - com.sap.mp.cordova.plugins.corelibs
- - com.sap.mp.cordova.plugins.logon
- - cordova-plugin-whitelist
- - org.apache.cordova.device
- - org.apache.cordova.inappbrowser
- 
-Add these plugins to your project with the regular CLI, before building and running.
-
-    cordova plugin add com.sap.mp.cordova.plugins.authproxy
-    // etc. ...
-
-
 ##Copyright and license
 
 Copyright 2015 SAP AG

@@ -8,3 +8,4 @@ iOS/X509KapselSample/platforms/ios/cordova/node_modules
 resources/i18n.provider.properties
 resources/x509ProviderUI.view.js
 Android/resource/index.html
+federation/kapsel_sample/www/index.html

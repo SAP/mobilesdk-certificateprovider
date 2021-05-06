@@ -5,3 +5,5 @@ profile
 iOS/X509FileCertificateProvider/X509FileCertificateProvider.xcodeproj/project.xcworkspace/xcuserdata/**/*
 *.a
 iOS/X509KapselSample/platforms/ios/cordova/node_modules
+resources/i18n.provider.properties
+resources/x509ProviderUI.view.js

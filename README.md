@@ -1,21 +1,22 @@
-#SAP Mobile SDK \<CertificateProvider\>
+# SAP Mobile SDK \<CertificateProvider\>
 
 Sample implementation of the SAP Mobile SDK `<CertificateProvider>` protocol API, which can be added to an iOS or Android project to allow the SAP Logon Manager component to get x509 certificate identities from 3rd party APIs or the device file system.  The `<CertificateProvider>` protocol can be used with SAP's **Native OData framework**, and the **Kapsel SDK**.
 
 
-##Introduction
+## Introduction
+
 Before SAP Mobile SDK 3.0 SP03, the SDK **Logon Manager** was hard-coded to call SAP Afaria API's when attempting to optain an X509Certificate for use with mutual auth against the SAP Mobile Platform server.  There was no extension point for integrating non-Afaria certificate provider options, such as SAP Partners, other MDM providers, or file-system installation.
 
 With the standardization on Logon Manager ('Logon') as the primary reusable component for handling registration, integration with the SAP Mobile SDK's **Data Vault**, **Client Hub**, **Onboarding**, etc., it became necessary to provide this extension point for non-Afaria solutions.
 
 The solution is a protocol interface, which can be implemented for a particular network/identity landscape, with a simple, reusable pattern.
 
-##Release Info
+## Release Info
 The interfaces described for CertificateProvider (and Android equivalents) are released in **SDK 3.0 SP08**.  The Developer edition of the SDK can be downloaded on [store.sap.com](store.sap.com).  
 
 See [Copyright and license](https://github.com/SAP/mobilesdk-certificateprovider#copyright-and-license) for license info for this sample implementation.
 
-##Additional Documentation
+## Additional Documentation
 Product Documentation can be found for these interfaces on [help.sap.com](help.sap.com) > Mobile > SAP Mobile Platform > SAP Mobile Platform SDK.
 
 See links here for
@@ -27,25 +28,25 @@ See links here for
    
 It is recommended to review the Kapsel documentation as well as the 'Native' doc for iOS or Android, as there is signficant overlap at the native code level.
 
-##Installation
+## Installation
 1.  Clone to your dev machine
 2.  Select one of the `CertificateProvider` implementations which is similar to your scenario, and modify to match your scenario's API's/sequence
 3.  Drag the modified `CertificateProvider` implementation into your project, **with the Mobile SDK 3.0 SP08+ libraries linked**
 4.  Register the `CertificateProvider` to the `LogonManager` component, using one of the following methods
 
-    #####iOS (Native)
+    ##### iOS (Native)
     Initialize the `CustomCertificateProvider`, then call the Logon API `setCertificateProvider:` to register the CertificateProvider to the Logon.
     ```objectivec
     CustomCertificateProvider *myCertificateProvider = [[CustomCertificateProvider alloc] init];
     [myLogonInstance setCertificateProvider:myCertificateProvider];
     ```
-    #####Android (Native)
+    ##### Android (Native)
     
-    #####Windows (Native)
+    ##### Windows (Native)
     For SDK 3.0 SP08 or earlier, use the **SAP.Logon.Core.ICertificateProvider**.
     This interface is still supported in SP09 or later, but is deprecated in favor of **SAP.CertificateProvider.ICertificateProvider**.  The newer interface should be adopted when possible.
 
-    #####Kapsel (JavaScript)
+    ##### Kapsel (JavaScript)
     Set `CustomCertificateProvider` in LogonContext's appConfig.certificate property, and call the logon `startLogonInit`.
     ```javascript
     

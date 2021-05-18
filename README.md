@@ -97,4 +97,4 @@ It is recommended to review the Kapsel documentation as well as the 'Native' doc
 
 ## License
 
-This project is licensed under Apache 2.0 except as noted otherwise in the [license file](./LICENSE.txt).
+This project is licensed under Apache 2.0 except as noted otherwise in the [license file](./LICENSE).

@@ -1,0 +1,9 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mobilesdk-certificateprovider
+Upstream-Contact: mobilesdk-certificateprovider <mobilesdk-certificateprovider@sap.com>
+Source: https://github.com/SAP/mobilesdk-certificateprovider
+
+
+Files: *
+Copyright: 2009-2021 SAP SE or an SAP affiliate company and mobilesdk-certificateprovider contributors
+License: Apache-2.0

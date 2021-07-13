@@ -1,5 +1,7 @@
 # SAP Mobile SDK \<CertificateProvider\>
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/mobilesdk-certificateprovider)](https://api.reuse.software/info/github.com/SAP/mobilesdk-certificateprovider)
+
 Sample implementation of the SAP Mobile SDK `<CertificateProvider>` protocol API, which can be added to an iOS or Android project to allow the SAP Logon Manager component to get x509 certificate identities from 3rd party APIs or the device file system.  The `<CertificateProvider>` protocol can be used with SAP's **Native OData framework**, and the **Kapsel SDK**.
 
 
